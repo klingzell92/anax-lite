@@ -1,2 +1,12 @@
-<h1>About</h1>
-<p>This is the page about me.</p>
+<main>
+  <article>
+    <h1>About</h1>
+    <p>Det här är oophp kursen där vi lär oss om objektorienterad programmering i php</p>
+
+    <a href="https://github.com/klingzell92/anax-lite"> Github </a>
+
+    <a href="status"> JSON-svar </a>
+
+    <img src="../img/elephant.png"/>
+</article>
+</main>
