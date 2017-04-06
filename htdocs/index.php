@@ -19,6 +19,11 @@ $app->response = new \Anax\Response\Response();
 $app->url     = new \Anax\Url\Url();
 $app->router  = new \Anax\Route\RouterInjectable();
 $app->view     = new \Anax\View\ViewContainer();
+$app->session  = new \Phil\Session\Session();
+
+$app->navbar = new \Phil\Navbar\Navbar();
+$app->navbar->setApp($app);
+$app->navbar->configure("navbar.php");
 
 // Inject $app into the view container for use in view files.
 $app->view->setApp($app);
@@ -39,6 +44,8 @@ $app->url->setScriptName($app->request->getScriptName());
 // Update url configuration with values from config file.
 $app->url->configure("url.php");
 $app->url->setDefaultsFromConfiguration();
+
+$app->style = $app->url->asset("css/style.css");
 
 // Load the routes
 require ANAX_INSTALL_PATH . "/config/route.php";
