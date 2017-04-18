@@ -1,0 +1,92 @@
+html,
+body {
+	margin:0;
+	padding:0;
+	height:100%;
+}
+#wrapper {
+	min-height:100%;
+	position:relative;
+}
+
+article {
+  padding: 1.5em 2em;
+	padding-bottom:70px; /* Height of the footer element */
+  max-width: 1000px;
+  margin:auto;
+}
+footer {
+  text-align: center;
+  padding: 5px;
+  font-size: 18px;
+  border-top: 1px solid black;
+}
+
+.mesmall{
+    width: 60px;
+    margin: 5px 5px 5px 5px;
+    float:left;
+    font-size: small;
+    font-style: italic;
+}
+
+.byline{
+		padding-bottom: 70px;
+    clear: both;
+}
+
+.selected{
+	background-color: #d9d9d9;
+}
+
+.calendar{
+  display: block;
+  width: 60%;
+  margin: 10px auto;
+}
+
+.day{
+  border: 1px solid black;
+  display: inline-block;
+  width: 14%;
+}
+
+.redday{
+  color: red;
+}
+
+.otherday{
+  background-color: grey;
+}
+
+.calendarImage{
+  max-width: 60%;
+}
+
+.pagination{
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.btn .btn-success{
+  width: 40%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.imageContainer{
+  text-align: center;
+}
+
+.dump{
+  display: block;
+  padding: 20px;
+  margin: 40px;
+  border: 1px solid black;
+}
+
+.session{
+  max-width: 60%;
+  margin: 0 auto;
+}

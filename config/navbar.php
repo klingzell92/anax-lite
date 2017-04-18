@@ -1,5 +1,5 @@
 <?php
-$navbar = [
+return  [
     "items" => [
         "home" => [
             "text" => "Home",
@@ -16,6 +16,14 @@ $navbar = [
         "session" => [
             "text" => "Session",
             "route" => "session",
+        ],
+        "calendar" => [
+            "text" => "Calendar",
+            "route" => "calendar",
+        ],
+        "login" => [
+            "text" => "Login",
+            "route" => "login",
         ],
     ]
 ];

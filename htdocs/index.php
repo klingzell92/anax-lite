@@ -20,10 +20,18 @@ $app->url     = new \Anax\Url\Url();
 $app->router  = new \Anax\Route\RouterInjectable();
 $app->view     = new \Anax\View\ViewContainer();
 $app->session  = new \Phil\Session\Session();
+$app->calendar = new \Phil\Calendar\Calendar();
 
 $app->navbar = new \Phil\Navbar\Navbar();
 $app->navbar->setApp($app);
 $app->navbar->configure("navbar.php");
+
+$app->db = new \Anax\Database\DatabaseConfigure();
+$app->db->configure("database.php");
+$app->db->setDefaultsFromConfiguration();
+
+
+$app->login = new \Phil\Login\Login($app->db);
 
 // Inject $app into the view container for use in view files.
 $app->view->setApp($app);

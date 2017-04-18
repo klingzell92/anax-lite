@@ -20,12 +20,13 @@ class Navbar implements \Anax\Common\AppInjectableInterface, \Anax\Common\Config
         $items = $this->config;
         $html = "<ul class='nav navbar-nav'>";
 
-        foreach ($items as $key => $value) {
+        foreach ($items["items"] as $value) {
             $selected = $this->app->request->getRoute() == $value ?
             "selected" : "";
             $url = $this->app->url->create($value["route"]);
-            $html.="<li class='$selected'><a href='".$url."'>".$value["text"]."</a></li></ul>";
+            $html.="<li class='$selected'><a href='".$url."'>".$value["text"]."</a></li>";
         }
+        $html.="</ul>";
         return $html;
     }
 }

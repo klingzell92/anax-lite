@@ -1,0 +1,12 @@
+USE phkl16;
+DROP TABLE IF EXISTS `users`;
+
+CREATE TABLE `users`
+(
+  `id` INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  `name` VARCHAR(250) NOT NULL,
+  `pass` VARCHAR(250) NOT NULL,
+  `email` VARCHAR(250)
+) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;
+
+SELECT * FROM users WHERE `name` LIKE 'test' OR `email` LIKE 'test';

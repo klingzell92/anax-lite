@@ -77,6 +77,7 @@ class Session implements \Anax\Common\ConfigureInterface
 
     public function dump()
     {
-        var_dump($_SESSION);
+        //var_dump($_SESSION);
+        return var_export($_SESSION, true);
     }
 }

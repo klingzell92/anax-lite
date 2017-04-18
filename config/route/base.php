@@ -13,9 +13,13 @@ $app->router->add("", function () use ($app) {
 
 
 $app->router->add("about", function () use ($app) {
+
+    $app->db->connect();
+    $user = $app->db->executeFetchAll("SELECT * FROM users WHERE
+    name='phil'")[0];
     $app->view->add("take1/header", ["title" => "About"]);
     //$app->view->add("navbar1/navbar");
-    $app->view->add("take1/about");
+    $app->view->add("take1/about", ["user" => $user]);
     $app->view->add("take1/footer");
 
     $app->response->setBody([$app->view, "render"])
@@ -42,4 +46,65 @@ $app->router->add("status", function () use ($app) {
     ];
 
     $app->response->sendJson($data);
+});
+
+$app->router->add("calendar", function () use ($app) {
+    $app->session->start();
+    $month = $app->session->get("month");
+    $year = $app->session->get("year");
+    if ($month == false) {
+        $app->session->set("month", $app->calendar->month);
+    } else {
+        $app->calendar->month = $month;
+    }
+
+    if ($year == false) {
+        $app->session->set("year", $app->calendar->year);
+    } else {
+        $app->calendar->year = $year;
+    }
+    $monthName = $app->calendar->getMonthName();
+    $calendar = $app->calendar->showCalendar();
+    $app->view->add(
+        "take1/calendar",
+        ["calendar" => $calendar,
+        "month"     => $monthName,
+        "increment" => $app->url->create("calendar/increment"),
+        "decrement" => $app->url->create("calendar/decrement")]
+    );
+
+    $app->response->setBody([$app->view, "render"])
+                  ->send();
+});
+
+$app->router->add("calendar/increment", function () use ($app) {
+    $urlCalendar  = $app->url->create("calendar");
+    $app->session->start();
+    $month = $app->session->get("month");
+    $year = $app->session->get("year");
+    if ($month == 12) {
+        $app->session->set("month", 1);
+        $app->session->set("year", $year + 1);
+    } else {
+        $app->session->set("month", $month + 1);
+    }
+    header("Location: ".$urlCalendar);
+    $app->response->setBody([$app->view, "render"])
+                  ->send();
+});
+
+$app->router->add("calendar/decrement", function () use ($app) {
+    $urlCalendar  = $app->url->create("calendar");
+    $app->session->start();
+    $month = $app->session->get("month");
+    $year = $app->session->get("year");
+    if ($month == 1) {
+        $app->session->set("month", 12);
+        $app->session->set("year", $year - 1);
+    } else {
+        $app->session->set("month", $month - 1);
+    }
+    header("Location: ".$urlCalendar);
+    $app->response->setBody([$app->view, "render"])
+                  ->send();
 });

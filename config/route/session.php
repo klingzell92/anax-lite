@@ -52,7 +52,22 @@ $app->router->add("session/status", function () use ($app) {
 
 $app->router->add("session/dump", function () use ($app) {
     $app->session->start();
-    $app->session->dump();
+    $number = $app->session->get("number");
+
+    $dumped = $app->session->dump();
+
+    $app->view->add(
+        "take1/dump",
+        ["number" => $number,
+        "increment" => $app->url->create("session/increment"),
+        "decrement" => $app->url->create("session/decrement"),
+        "status" => $app->url->create("session/status"),
+        "dump" => $app->url->create("session/dump"),
+        "destroy" => $app->url->create("session/destroy"),
+        "dumped" => $dumped]
+    );
+    $app->response->setBody([$app->view, "render"])
+                  ->send();
 });
 
 $app->router->add("session/destroy", function () use ($app) {
