@@ -8,3 +8,4 @@
  require __DIR__ . "/route/session.php";
  require __DIR__ . "/route/login.php";
  require __DIR__ . "/route/admin.php";
+ require __DIR__ . "/route/webshop.php";

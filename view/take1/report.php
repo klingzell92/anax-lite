@@ -79,8 +79,43 @@
       Uppgifterna är bra och jag känner att jag lär mig mycket. Det är helt klart tuffare än tidigare kurser mest beroende på att uppgifterna känns större, de är inte för svåra men tar tid att göra.
       Jag har hittills lagt nästan mer än dubbelt så mycket tid på den här kursen jämfört med webbappskursen och har svårt att hinna med att göra uppgifterna inom den tiden det är tänkt att det ska ta.
       Därför har jag heller inte hunnit med att göra någon extrauppgift än så länge.
-    </p>  
+    </p>
     <h2>kmom04</h2>
+    <h3>Finns något att säga kring din klass för texfilter, eller rent allmänt om formattering och filtrering av text som sparas i databasen av användaren?</h3>
+    <p>
+    Jag valde att ladda ned den färdiga klassen CTextFilter med composer och integrera den i mitt ramverk. Jag har inte ändrat något i klassen utan den gör bara allt som krävs för att klara grundkraven.
+    Jag sparar all text utan filtrering i databasen och använder bara den när jag ska visa texten på sidan.
+    </p>
+    <h3>Berätta hur du tänkte när du strukturerade klasserna och databasen för webbsidor och bloggposter?</h3>
+    <p>
+      Strukturen på databasen är precis så som i övningen. Jag skapade en klass Content som har funktioner för att hämta en eller flera bloggposter, webbsidor eller block samt att hämta all sorts content. Det finns också en funktion för att kolla om en slug existerar.
+      Utöver det har jag skapat klassen functions där jag har lagt ett antal hjälpfunktioner som t.ex. getGet och getPost, vilket hjälpte mig att minska koden lite i mina routes.
+    </p>
+
+    <h3>Förklara vilka routes som används för att demonstrera funktionaliteten för webbsidor och blogg (så att en utomstående kan testa).</h3>
+    <p>
+      På admin sidan som man når genom att logga in och sedan gå till admin, så har jag lagt till create och overview.
+      Om man klickar på create så får man ange en titel och sedan kan man redigera innehållet. Och på overview så kan man se en tabell över allt innehåll.
+    </p>
+    <p>
+      För att se bloggen så klickar man på blog i navbaren. Där visas alla inlägg i en lista och man klickar på titelt för att komma till ett inlägg.
+      Under pages i navbaren så finns en tabell över sidorna. Och om man klickar på titeln så kommer man till sidan.
+    </p>
+    <p>
+      Under routen /block så visar jag upp de block som finns i databasen. Jag visste inte riktigt hur jag skulle visa dem så jag valde att göra dem som widgetar som i webbappskursen.
+      För att testa CTextFilter klassen så har jag gjort en testsida som man når via navbaren under CTextFilter.
+    </p>
+    <h3>Hur känns det att dokumentera databasen så här i efterhand?</h3>
+    <p>
+      Det är bra tycker jag, man kan få en bra översikt över hur tabellerna hänger ihop. Och det var enkelt att åstadkomma me Reverse engineer i Workbench.
+    </p>
+    <h3>Om du är självkritisk till koden du skriver i Anax Lite, ser du förbättringspotential och möjligheter till alternativ struktur av din kod?</h3>
+    <p>
+        Ja det finns mycket att göra för att förbättra strukturen, men jag har inte riktigt haft tid att göra det då jag ligger lite efter.
+        Den största förbättringspotentiallen som finns är nog i mina routes där jag har väldigt mycket kod.
+        Jag skulle t.ex. kunna lägga till en funktion för att lägga till och rendera vyer i app klassen som Kenneth tipsade om. Det kommer jag nog också göra när jag får tid till det, utöver det finns det säkert mycket att finslipa på vad gäller koden.
+    </p>
+
     <h2>kmom05</h2>
     <h2>kmom06</h2>
     <h2>kmom07-10</h2>

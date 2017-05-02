@@ -1,3 +1,4 @@
+<div class="tab-pane fade active in" id="search">
 <div class="row">
 <div class="col-lg-8">
 <form method="get" class="form-horizontal">
@@ -6,7 +7,7 @@
     <div class="form-group">
       <label for="search" class="col-lg-2 control-label">Use % as wildcard</label>
       <div class="col-lg-10">
-        <input type="search" name="searchName"  id="search"  value="<?= $searchName ?>" class="form-control">
+        <input type="search" name="searchName"  id="search"  value="<?= esc($searchName) ?>" class="form-control">
       </div>
     </div>
     <div class="form-group">
@@ -45,5 +46,7 @@ foreach ($result as $row) {
 </table>
 <?php } ?>
 <a href='<?= $admin ?>' class="btn btn-primary">Back to admin</a>
+</div>
+</div>
 </div>
 </div>

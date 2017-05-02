@@ -9,4 +9,4 @@ CREATE TABLE `users`
   `email` VARCHAR(250)
 ) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;
 
-SELECT * FROM users WHERE `name` LIKE 'test' OR `email` LIKE 'test';
+SELECT * FROM users;

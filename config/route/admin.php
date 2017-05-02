@@ -9,7 +9,7 @@ $app->router->add("admin", function () use ($app) {
     } else {
       // Only these values are valid
 
-        $hits = isset($_GET["hits"]) ? $_GET["hits"] : 4;
+        $hits = getGet("hits", 4);
         if (!(is_numeric($hits) && $hits > 0 && $hits <= 8)) {
             die("Not valid for hits.");
         }
@@ -20,7 +20,7 @@ $app->router->add("admin", function () use ($app) {
         $max = ceil($max[0]->max / $hits);
 
         // Get current page
-        $page = isset($_GET["page"]) ? $_GET["page"] : 1;
+        $page = getGet("page", 1);
         if (!(is_numeric($hits) && $page > 0 && $page <= $max)) {
             die("Not valid for page.");
         }
@@ -30,8 +30,8 @@ $app->router->add("admin", function () use ($app) {
         $orders = ["asc", "desc"];
 
         // Get settings from GET or use defaults
-        $orderBy = isset($_GET["orderby"]) ? $_GET["orderby"] : "id";
-        $order = isset($_GET["order"]) ? $_GET["order"] : "asc";
+        $orderBy = getGet("orderby", "id");
+        $order = getGet("order", "asc");
 
         // Incoming matches valid value sets
         if (!(in_array($orderBy, $columns) && in_array($order, $orders))) {
@@ -41,6 +41,7 @@ $app->router->add("admin", function () use ($app) {
         $users = $app->db->executeFetchAll("SELECT * FROM users ORDER BY $orderBy $order LIMIT $hits OFFSET $offset;");
 
         $app->view->add("take1/header", ["title" => "Admin"]);
+        $app->view->add("admin/adminnav");
         $app->view->add(
             "admin/admin",
             ["profile" => $app->url->create("login/profile"),
@@ -48,6 +49,8 @@ $app->router->add("admin", function () use ($app) {
             "edit" => $app->url->create("admin/edit"),
             "search" => $app->url->create("admin/search"),
             "create" => $app->url->create("admin/create"),
+            "pages" => $app->url->create("admin/pages"),
+            "create" => $app->url->create("admin/createpost"),
             "admin" => $app->url->create("admin"),
             "max" => $max,
             "users" => $users]
@@ -68,10 +71,11 @@ $app->router->add("admin/search", function () use ($app) {
     if (!$app->session->has("name")) {
         header("Location: $login");
     } else {
-        $searchName = isset($_GET["searchName"]) ? htmlentities($_GET["searchName"]) : null;
+        $searchName = getGet("searchName");
         $sql = "SELECT * FROM users WHERE `name` LIKE ? OR `email` LIKE ?";
         $result = $app->db->executeFetchAll($sql, [$searchName, $searchName]);
         $app->view->add("take1/header", ["title" => "Search"]);
+        $app->view->add("admin/adminnav");
         $app->view->add(
             "admin/search",
             ["admin" => $app->url->create("admin"),
@@ -91,12 +95,15 @@ $app->router->add("admin/edit", function () use ($app) {
     $app->db->connect();
     $app->session->start();
     $login = $app->url->create("login");
-    $status = isset($_GET["status"]) ? htmlentities($_GET["status"]) : "Change Password";
+    //$status = isset($_GET["status"]) ? htmlentities($_GET["status"]) : "Change Password";
+    $status = getGet("status", "Change Password");
     // Check if someone is logged in
     if ($app->session->has("name")) {
-        $userName = isset($_GET["name"]) ? htmlentities($_GET["name"]) : null;
+        //$userName = isset($_GET["name"]) ? htmlentities($_GET["name"]) : null;
+        $userName = getGet("name");
         $user = $app->login->getUser($userName);
         $app->view->add("take1/header", ["title" => "Edit"]);
+        $app->view->add("admin/adminnav");
         $app->view->add(
             "admin/edit",
             ["logout" => $app->url->create("login/logout"),
@@ -132,7 +139,7 @@ $app->router->add("admin/handle_edit", function () use ($app) {
         if ($app->login->exists($user_name)) {
           // edit user
             $app->login->editUser($new_name, $new_email, $user_name);
-            header("Location: $edit?name=$new_name");
+            header("Location: $edit?name=esc($new_name)");
         }
     } else {
         header("Location: $login");
@@ -208,6 +215,7 @@ $app->router->add("admin/create", function () use ($app) {
         $userName = isset($_GET["name"]) ? htmlentities($_GET["name"]) : null;
         $user = $app->login->getUser($userName);
         $app->view->add("take1/header", ["title" => "Edit"]);
+        $app->view->add("admin/adminnav");
         $app->view->add(
             "admin/create",
             ["logout" => $app->url->create("login/logout"),
@@ -261,5 +269,148 @@ $app->router->add("admin/handle_create", function () use ($app) {
         }
     } else {
         header("Location: $admin");
+    }
+});
+
+$app->router->add("admin/pages", function () use ($app) {
+    $app->db->connect();
+    $app->session->start();
+    $login = $app->url->create("login");
+
+    if (!$app->session->has("name")) {
+        header("Location: $login");
+    } else {
+        $result = $app->content->showAll();
+        $app->view->add("take1/header", ["title" => "Pages"]);
+        $app->view->add("admin/adminnav");
+        $app->view->add(
+            "admin/pages",
+            ["result" => $result,
+            "edit" => $app->url->create("admin/editpage")]
+        );
+        $app->view->add("take1/footer");
+
+        $app->response->setBody([$app->view, "render"])
+                      ->send();
+    }
+});
+
+$app->router->add("admin/editpage", function () use ($app) {
+    $app->db->connect();
+    $app->session->start();
+    $login = $app->url->create("login");
+
+    if (!$app->session->has("name")) {
+        header("Location: $login");
+    } else {
+        $id = getPost("contentId") ?: getGet("id");
+        if (!is_numeric($id)) {
+            die("Not valid for content id.");
+        }
+
+        if (hasKeyPost("doSave")) {
+            $params = getPost([
+                "contentTitle",
+                "contentPath",
+                "contentSlug",
+                "contentData",
+                "contentType",
+                "contentFilter",
+                "contentPublish",
+                "contentId"
+            ]);
+
+            if (!$params["contentSlug"]) {
+                  $slug = slugify($params["contentTitle"]);
+                if (!$app->content->slugExists($slug)) {
+                    $params["contentSlug"] = $slug;
+                } else {
+                    die("Slug already exists, enter a new slug!");
+                }
+            }
+
+            if (!$params["contentPath"]) {
+                $params["contentPath"] = null;
+            }
+
+            $sql = "UPDATE content SET title=?, path=?, slug=?, data=?, type=?, filter=?, published=? WHERE id = ?;";
+            $app->db->execute($sql, array_values($params));
+            header("Location: ?id=$id");
+        }
+
+        $result = $app->content->getContent($id);
+        $app->view->add("take1/header", ["title" => "Pages"]);
+        $app->view->add("admin/adminnav");
+        $app->view->add(
+            "admin/editpage",
+            ["content" => $result,
+              "delete" => $app->url->create("admin/deletepost")]
+        );
+        $app->view->add("take1/footer");
+
+        $app->response->setBody([$app->view, "render"])
+                      ->send();
+    }
+});
+
+$app->router->add("admin/createpost", function () use ($app) {
+    $app->db->connect();
+    $app->session->start();
+    $login = $app->url->create("login");
+
+    if (!$app->session->has("name")) {
+        header("Location: $login");
+    } else {
+        if (hasKeyPost("doCreate")) {
+            $title = getPost("contentTitle");
+            $sql = "INSERT INTO content (title) VALUES (?);";
+            $app->db->execute($sql, [$title]);
+            $id = $app->db->lastInsertId();
+            $edit = $app->url->create("admin/editpage");
+            header("Location: $edit?id=$id");
+        }
+
+        $app->view->add("take1/header", ["title" => "Pages"]);
+        $app->view->add("admin/adminnav");
+        $app->view->add("admin/createpost");
+        $app->view->add("take1/footer");
+
+        $app->response->setBody([$app->view, "render"])
+                      ->send();
+    }
+});
+
+
+$app->router->add("admin/deletepost", function () use ($app) {
+    $app->db->connect();
+    $app->session->start();
+    $login = $app->url->create("login");
+
+    if (!$app->session->has("name")) {
+        header("Location: $login");
+    } else {
+        $id = getPost("contentId") ?: getGet("id");
+        if (!is_numeric($id)) {
+            die("Not valid for content id.");
+        }
+        if (hasKeyPost("doDelete")) {
+            $id = getPost("contentId");
+            $sql = "UPDATE content SET deleted=NOW() WHERE id=?";
+            $app->db->execute($sql, [$id]);
+            $admin = $app->url->create("admin/pages");
+            header("Location: $admin");
+        }
+
+        $result = $app->content->getContent($id);
+        $app->view->add("take1/header", ["title" => "Pages"]);
+        $app->view->add("admin/adminnav");
+        $app->view->add(
+            "admin/deletepost",
+            ["content" => $result]
+        );
+        $app->view->add("take1/footer");
+
+        $app->response->setBody([$app->view, "render"])
+                      ->send();
     }
 });

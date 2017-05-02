@@ -22,6 +22,7 @@ $app->view     = new \Anax\View\ViewContainer();
 $app->session  = new \Phil\Session\Session();
 $app->calendar = new \Phil\Calendar\Calendar();
 
+
 $app->navbar = new \Phil\Navbar\Navbar();
 $app->navbar->setApp($app);
 $app->navbar->configure("navbar.php");
@@ -32,6 +33,8 @@ $app->db->setDefaultsFromConfiguration();
 
 
 $app->login = new \Phil\Login\Login($app->db);
+$app->content = new \Phil\Content\Content($app->db);
+$app->filter = new \Mos\TextFilter\CTextFilter();
 
 // Inject $app into the view container for use in view files.
 $app->view->setApp($app);

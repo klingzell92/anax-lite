@@ -108,3 +108,100 @@ $app->router->add("calendar/decrement", function () use ($app) {
     $app->response->setBody([$app->view, "render"])
                   ->send();
 });
+
+$app->router->add("test", function () use ($app) {
+    $app->view->add("take1/header", ["title" => "TextFilter"]);
+    //$app->view->add("navbar1/navbar");
+    $app->view->add("take1/test");
+    $app->view->add("take1/footer");
+
+    $app->response->setBody([$app->view, "render"])
+                  ->send();
+});
+
+$app->router->add("pages", function () use ($app) {
+    $app->db->connect();
+    $result = $app->content->getPages();
+    $app->view->add("take1/header", ["title" => "Pages"]);
+    //$app->view->add("navbar1/navbar");
+    $app->view->add(
+        "take1/pages",
+        ["result" => $result,
+        "page" => $app->url->create("page")]
+    );
+    $app->view->add("take1/footer");
+
+    $app->response->setBody([$app->view, "render"])
+                  ->send();
+});
+
+$app->router->add("page", function () use ($app) {
+    $app->db->connect();
+    $path = getGet("path");
+    $result = $app->content->getPage($path);
+    if (!$result) {
+           header("HTTP/1.0 404 Not Found");
+           $app->view->add("take1/header", ["title" => "404"]);
+           $app->view->add(
+               "take1/error",
+               ["content" => $result]
+           );
+           $app->view->add("take1/footer");
+    }
+    $app->view->add("take1/header", ["title" => "Page"]);
+    $app->view->add(
+        "take1/page",
+        ["content" => $result]
+    );
+    $app->view->add("take1/footer");
+
+    $app->response->setBody([$app->view, "render"])
+                  ->send();
+});
+
+
+$app->router->add("blog/**", function () use ($app) {
+    $app->db->connect();
+    $blog = $_SERVER['REQUEST_URI'];
+    $arr = explode('blog', $blog);
+    $slug = $arr[1];
+    $result = "";
+    if ($slug != "") {
+        $slug = ltrim($slug, '/');
+        $result = $app->content->getPost($slug);
+        if (!$result) {
+            header("HTTP/1.0 404 Not Found");
+            $app->view->add("take1/header", ["title" => "404"]);
+            $app->view->add(
+                "take1/error",
+                ["content" => $result]
+            );
+            $app->view->add("take1/footer");
+        }
+    } else {
+        $result = $app->content->getBLog();
+    }
+    $app->view->add("take1/header", ["title" => "Blog"]);
+    $app->view->add(
+        "take1/blog",
+        ["content" => $result,
+        "blog" => $app->url->create("blog")]
+    );
+    $app->view->add("take1/footer");
+
+    $app->response->setBody([$app->view, "render"])
+                  ->send();
+});
+
+$app->router->add("block", function () use ($app) {
+    $app->db->connect();
+    $result = $app->content->getBlocks();
+    $app->view->add("take1/header", ["title" => "Blocks"]);
+    $app->view->add(
+        "take1/block",
+        ["content" => $result]
+    );
+    $app->view->add("take1/footer");
+    $app->response->setBody([$app->view, "render"])
+                  ->send();
+});

@@ -6,7 +6,8 @@ $app->router->add("login", function () use ($app) {
         "login/login",
         ["validate" => $app->url->create("login/validate"),
         "logout" => $app->url->create("login/logout"),
-        "create" => $app->url->create("login/create")]
+        "create" => $app->url->create("login/create"),
+        "profile" => $app->url->create("login/profile")]
     );
     $app->view->add("take1/footer");
 

@@ -6,6 +6,7 @@ $app->session->start();
 if ($app->session->has("name")) {
     echo "<p>You are already logged in as " . $app->session->get('name') . "</p>";
     echo "<p><a href='$logout'>Logout</a></p>";
+    echo "<p>Go to <a href='$profile'>profile</a> </p>";
     $user_loggedin = "disabled";
 }
 

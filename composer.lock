@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "76a79785c12cdb9553806ba20cdfc80e",
+    "content-hash": "5cea1539244f759d3cf818faf4ad74bb",
     "packages": [
         {
             "name": "anax/common",
@@ -161,22 +161,19 @@
         },
         {
             "name": "anax/response",
-            "version": "v1.0.4",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/canax/response.git",
-                "reference": "9af4ec6aa42ad31127e78075cec00af165671044"
+                "reference": "b026eea38af2a52874fe9cbf7b58db37d08b34c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/canax/response/zipball/9af4ec6aa42ad31127e78075cec00af165671044",
-                "reference": "9af4ec6aa42ad31127e78075cec00af165671044",
+                "url": "https://api.github.com/repos/canax/response/zipball/b026eea38af2a52874fe9cbf7b58db37d08b34c9",
+                "reference": "b026eea38af2a52874fe9cbf7b58db37d08b34c9",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6"
-            },
-            "require-dev": {
                 "php": ">=5.6"
             },
             "type": "library",
@@ -206,26 +203,23 @@
                 "micro",
                 "mvc"
             ],
-            "time": "2017-03-13T15:32:20+00:00"
+            "time": "2017-04-12T14:55:30+00:00"
         },
         {
             "name": "anax/router",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/canax/router.git",
-                "reference": "29755b0357407b503866779236fa69c0fe1a87f1"
+                "reference": "ad31bba5bc94cd74e31ab52e69365ffcf4f5c09b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/canax/router/zipball/29755b0357407b503866779236fa69c0fe1a87f1",
-                "reference": "29755b0357407b503866779236fa69c0fe1a87f1",
+                "url": "https://api.github.com/repos/canax/router/zipball/ad31bba5bc94cd74e31ab52e69365ffcf4f5c09b",
+                "reference": "ad31bba5bc94cd74e31ab52e69365ffcf4f5c09b",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6"
-            },
-            "require-dev": {
                 "php": ">=5.6"
             },
             "type": "library",
@@ -255,7 +249,7 @@
                 "micro",
                 "mvc"
             ],
-            "time": "2017-03-26T20:55:23+00:00"
+            "time": "2017-04-13T11:20:20+00:00"
         },
         {
             "name": "anax/url",
@@ -358,6 +352,159 @@
             "time": "2017-03-30T21:48:10+00:00"
         },
         {
+            "name": "ezyang/htmlpurifier",
+            "version": "v4.9.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ezyang/htmlpurifier.git",
+                "reference": "6d50e5282afdfdfc3e0ff6d192aff56c5629b3d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/6d50e5282afdfdfc3e0ff6d192aff56c5629b3d4",
+                "reference": "6d50e5282afdfdfc3e0ff6d192aff56c5629b3d4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "require-dev": {
+                "simpletest/simpletest": "^1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "HTMLPurifier": "library/"
+                },
+                "files": [
+                    "library/HTMLPurifier.composer.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Edward Z. Yang",
+                    "email": "admin@htmlpurifier.org",
+                    "homepage": "http://ezyang.com"
+                }
+            ],
+            "description": "Standards compliant HTML filter written in PHP",
+            "homepage": "http://htmlpurifier.org/",
+            "keywords": [
+                "html"
+            ],
+            "time": "2017-03-13T06:30:53+00:00"
+        },
+        {
+            "name": "michelf/php-markdown",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michelf/php-markdown.git",
+                "reference": "156e56ee036505ec637d761ee62dc425d807183c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michelf/php-markdown/zipball/156e56ee036505ec637d761ee62dc425d807183c",
+                "reference": "156e56ee036505ec637d761ee62dc425d807183c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-lib": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Michelf": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Michel Fortin",
+                    "email": "michel.fortin@michelf.ca",
+                    "homepage": "https://michelf.ca/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "John Gruber",
+                    "homepage": "https://daringfireball.net/"
+                }
+            ],
+            "description": "PHP Markdown",
+            "homepage": "https://michelf.ca/projects/php-markdown/",
+            "keywords": [
+                "markdown"
+            ],
+            "time": "2015-12-24T01:37:31+00:00"
+        },
+        {
+            "name": "michelf/php-smartypants",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michelf/php-smartypants.git",
+                "reference": "674badae316a957173c67dd3184e21cb6807d7fb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michelf/php-smartypants/zipball/674badae316a957173c67dd3184e21cb6807d7fb",
+                "reference": "674badae316a957173c67dd3184e21cb6807d7fb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-lib": "1.6.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Michelf": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Michel Fortin",
+                    "email": "michel.fortin@michelf.ca",
+                    "homepage": "https://michelf.ca/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "John Gruber",
+                    "homepage": "https://daringfireball.net/"
+                }
+            ],
+            "description": "PHP SmartyPants",
+            "homepage": "https://michelf.ca/projects/php-smartypants/",
+            "keywords": [
+                "dashes",
+                "quotes",
+                "spaces",
+                "typographer",
+                "typography"
+            ],
+            "time": "2016-10-10T18:14:08+00:00"
+        },
+        {
             "name": "mos/cimage",
             "version": "v0.7.19",
             "source": {
@@ -416,6 +563,103 @@
                 "imageprocessing"
             ],
             "time": "2017-03-30T22:47:55+00:00"
+        },
+        {
+            "name": "mos/ctextfilter",
+            "version": "v1.2.20",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mosbth/ctextfilter.git",
+                "reference": "f324263f13fdc931982648443bb54da8ce5ad0c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mosbth/ctextfilter/zipball/f324263f13fdc931982648443bb54da8ce5ad0c6",
+                "reference": "f324263f13fdc931982648443bb54da8ce5ad0c6",
+                "shasum": ""
+            },
+            "require": {
+                "ezyang/htmlpurifier": "4.*",
+                "michelf/php-markdown": "1.6.*",
+                "michelf/php-smartypants": "1.6.*",
+                "php": ">=5.4",
+                "scrivo/highlight.php": "^9.0"
+            },
+            "suggest": {
+                "ext-json": "*",
+                "ext-yaml": "*",
+                "mustangostang/spyc": "^0.6",
+                "symfony/yaml": "^3.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Mos\\TextFilter\\": "src/TextFilter"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mikael Roos",
+                    "email": "mos@dbwebb.se",
+                    "homepage": "http://mikaelroos.se",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP classes for text filtering and formatting to HTML",
+            "homepage": "http://dbwebb.se",
+            "keywords": [
+                "Html Purifier",
+                "YAML front matter",
+                "bbcode",
+                "education",
+                "json front matter",
+                "markdown",
+                "shortcode"
+            ],
+            "time": "2017-02-06T23:08:34+00:00"
+        },
+        {
+            "name": "scrivo/highlight.php",
+            "version": "v9.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/scrivo/highlight.php.git",
+                "reference": "a905bf346a47f5fa40f33641b346c37f418d1242"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/a905bf346a47f5fa40f33641b346c37f418d1242",
+                "reference": "a905bf346a47f5fa40f33641b346c37f418d1242",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Highlight\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Server side syntax highlighter that supports over 90 languages. It's a PHP port of highlight.js",
+            "keywords": [
+                "code",
+                "highlight",
+                "highlight.js",
+                "highlight.php",
+                "syntax"
+            ],
+            "time": "2016-01-01T14:08:00+00:00"
         }
     ],
     "packages-dev": [],

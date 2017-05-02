@@ -49,11 +49,6 @@ footer {
   border: 1px solid black;
   display: inline-block;
   width: 14%;
-	text-align: center;
-}
-
-.nameOfDay{
-	font-weight: bold;
 }
 
 .redday{
@@ -68,18 +63,16 @@ footer {
   max-width: 60%;
 }
 
-.switch{
-	 	display: inline-block;
-    width: 100%;
-    margin: 50px auto;
+.pagination{
+  margin: auto;
+  width: 50%;
+  padding: 10px;
 }
 
-.previous{
-	float: left;
-}
-
-.next{
-  float: right;
+.btn .btn-success{
+  width: 40%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .imageContainer{
@@ -87,7 +80,6 @@ footer {
 }
 
 .dump{
-  width: 40%;
   display: block;
   padding: 20px;
   margin: 40px;
@@ -97,4 +89,39 @@ footer {
 .session{
   max-width: 60%;
   margin: 0 auto;
+}
+
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.widget {
+    height: 200px;
+    padding: 10px;
+    box-sizing: border-box;
+    border:2px solid #CCC;
+    flex: 0 0 98%;
+    margin: 0 1% 10px;
+}
+
+/* Media queries for .widget */
+@media (min-width: 500px) {
+    .widget {
+        flex: 0 0 48.0%;
+    }
+}
+
+@media (min-width: 700px) {
+    .widget {
+        flex: 0 0 31.3333333333333%;
+    }
+}
+
+@media (min-width: 980px) {
+    .widget {
+        flex: 0 0 23.0%;
+    }
 }

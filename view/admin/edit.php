@@ -1,3 +1,4 @@
+<div class="tab-pane fade active in" id="edit">
 <div class="row">
 <div class="col-lg-4 col-lg-offset-1">
 <form action="<?= $handle ?>" method="POST" class="form-horizontal">
@@ -65,3 +66,5 @@
 </div>
 
 <a href='<?= $admin ?>' class="btn btn-primary">Back to admin</a>
+</div>
+</div>

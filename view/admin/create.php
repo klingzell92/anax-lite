@@ -1,3 +1,4 @@
+<div class="tab-pane fade active in" id="createuser">
 <div class="row">
 <div class="col-lg-8">
 <form action="<?= $handle ?>" method="POST" class="form-horizontal">
@@ -36,5 +37,7 @@
  </fieldset>
 </form>
 <a href='<?= $admin ?>' class="btn btn-primary">Back to admin</a>
+</div>
+</div>
 </div>
 </div>
