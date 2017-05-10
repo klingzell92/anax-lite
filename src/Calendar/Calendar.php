@@ -25,7 +25,7 @@ class Calendar implements \Anax\Common\ConfigureInterface
     * @param string $name (optional) The name of the session
     * @return void
     */
-    public function __construct($month = 4, $year = 2017)
+    public function __construct($month = 5, $year = 2017)
     {
         $this->month = $month;
         $this->year = $year;

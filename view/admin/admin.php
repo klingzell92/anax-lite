@@ -24,7 +24,7 @@
           <td><?=$value->email?></td>
           <td><a href="<?= $edit ?>?name=<?= esc($value->name) ?>">Edit</a></td>
           </tr>
-            <?php   endforeach; ?>
+        <?php endforeach; ?>
       </tbody>
     </table>
 

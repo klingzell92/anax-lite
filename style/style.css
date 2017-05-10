@@ -1,17 +1,17 @@
 html,
 body {
-	margin:0;
-	padding:0;
-	height:100%;
+  margin:0;
+  padding:0;
+  height:100%;
 }
 #wrapper {
-	min-height:100%;
-	position:relative;
+  min-height:100%;
+  position:relative;
 }
 
 article {
   padding: 1.5em 2em;
-	padding-bottom:70px; /* Height of the footer element */
+  padding-bottom:70px; /* Height of the footer element */
   max-width: 1000px;
   margin:auto;
 }
@@ -31,12 +31,12 @@ footer {
 }
 
 .byline{
-		padding-bottom: 70px;
+    padding-bottom: 70px;
     clear: both;
 }
 
 .selected{
-	background-color: #d9d9d9;
+  background-color: #d9d9d9;
 }
 
 .calendar{

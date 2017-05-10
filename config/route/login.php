@@ -62,7 +62,6 @@ $app->router->add("login/change", function () use ($app) {
     } else {
         header("Location: $login");
     }
-
 });
 
 $app->router->add("login/logout", function () use ($app) {

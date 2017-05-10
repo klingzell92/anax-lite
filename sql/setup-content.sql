@@ -2,8 +2,6 @@
 SET NAMES utf8;
 
 use phkl16;
-
-use phkl16;
 --
 -- Create table for Content
 --
@@ -28,7 +26,9 @@ CREATE TABLE `content`
   `published` DATETIME DEFAULT NULL,
   `created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated` DATETIME DEFAULT NULL, --  ON UPDATE CURRENT_TIMESTAMP,
-  `deleted` DATETIME DEFAULT NULL
+  `deleted` DATETIME DEFAULT NULL,
+  
+    KEY `title_index` (`title`)
 
 ) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;
 
@@ -38,3 +38,5 @@ INSERT INTO `content` (`path`, `slug`, `type`, `title`, `data`, `filter`) VALUES
 
 
 SELECT `id`, `path`, `slug`, `type`, `title`, `created` FROM `content`;
+
+EXPLAIN SELECT * FROM content WHERE title = "Om";

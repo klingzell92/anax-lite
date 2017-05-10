@@ -1,4 +1,5 @@
 <?php
+namespace Phil\Connect;
 
 class Connect
 {

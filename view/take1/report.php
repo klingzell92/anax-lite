@@ -117,7 +117,60 @@
     </p>
 
     <h2>kmom05</h2>
+    <h3>Gick det bra att komma igång med det vi kallar programmering av databas, med transaktioner, lagrade procedurer, triggers, funktioner?</h3>
+    <p>
+      Att programmera på detta sättet var något som var helt nytt för mig. Jag hade hört talas om lagrade procedurer innan men visste inte hur man använde dem. Så med tanke på att det var något nytt för mig så tycker jag att det har gått bra.
+    </p>
+
+    <h3>Hur är din syn på att programmera på detta viset i databasen?</h3>
+    <p>
+      Jag ser nog bara fördelar med det. Det känns som ett bra sätt att minska användet utav SQL kod i php koden. När man istället kan använda sig utav lagrade procedurer eller funktioner som man kallar på för att utföra olika querys.
+    </p>
+
+    <h3>Några reflektioner kring din kod för backenden till webbshopen?</h3>
+    <p>
+      Jag utgick ifrån den exempel sql-koden som fanns för webshopen, på så sätt fick jag de mest utav de tabbellerna som jag behövde och kopplingen mellan dem.
+      Nästan allt som har med att hämta, ta bort, lägga till eller updatera görs med lagrade procedurer. När man lägger till en produkt så läggs den också in i lagret med 100 items och när man tar bort en produkt så försvinner den också ifrån lagret.
+
+      Jag vet inte om  min lösning för verukorgen är så bra men man behöver aldrig skapa en ny varukorg utan det finns bara en varukorg. Den håller reda på vem som har handlat vad med kund-id.
+      Jag använder lagrade procedurer för att lägga till och ta bort produkter från varukorgen.
+
+      För att skapa en ny order så har jag en lagrad procedur som tar emot kund-id och lägger till produkter ifrån varukorgen där kund-id matchar.
+      Jag använder mig utav en while loop i proceduren för att kunna ta bort produkterna ifrån lagret om det är mer än en. Sedan när man tar bort en order läggs produkterna tillbaks i lagret på samma sätt.
+
+      Själva CRUD delen i php koden var inga större problem då vi har gjort det ganska mycket nu. Fast det blev betydligt mindre sql kod i PHP koden nu när man kunde använda sig utav lagrade procedurer vilket var bra.
+    </p>
+
+    <h3>Något du vill säga om koden generellt i och kring Anax Lite?</h3>
+    <p>
+      Det finns nog väldigt mycket att förbättra vad gäller koden. Vad gäller CRUD som vi har gjort för en del uppgifter nu så är det väldigt repetiv kod och det skulle kunna skrivas på ett bättre sätt.
+      Överlag så är det mycket kod i mina routes som inte är speciellt DRY, men just nu är jag bara glad att koden fungerar.
+    </p>
     <h2>kmom06</h2>
+    <h3>Vad du bekant med begreppet index i databaser sedan tidigare?</h3>
+    <p>
+      Nej det var något nytt för mig. Tidigare har jag enbart jobbat med primär nycklar och forreign keys så det var intressant att lära sig om något nytt.
+      Jag vet inte om jag har förstått helt hur man jobbar med index mer än att man kan sökoptimera sina kolumner.
+    </p>
+    <h3>Berätta om hur du jobbade i uppgiften om index och vilka du valde att lägga till och skillnaden före/efter.</h3>
+    <p>
+      Jag valde att lägga till en unique på name i tabellen users, detta passade bra då användarnamnet måste vara unikt. Jag lade även till ett index på email i tabellen users.
+      Då båda dessa används för att matcha mot på söksidan så passade det bra att lägga till indexet på email. För båda så ändrade det ifrån en full tabellsökning till bara en rad.
+      Sedan lade jag även till ett index på title i tabellen content då det skulle kunna var en kolumn som man kan söka på. Här gick det okcså ifrån en full tabellsökning till bara en rad.
+    </p>
+    <h3>Har du tidigare erfarenheter av att skriva kod som testar annan kod?</h3>
+    <p>
+      Jag har inte så mycket erfarenhet utav det sedan tidigare. Men vi skrev ju liknande tester i oopython kursen så det är väl den erfarenheten som jag har utav enhetstester.
+    </p>
+    <h3>Hur ser du på begreppet enhetstestning och att skriva testbar kod?</h3>
+    <p>
+      Det kan väl vara ett bra sätt att kvalitetssäkra sin kod samt testa så att koden fungerar som tänkt. Fast det blir konstigt att skriva testfall för sin egen kod då man redan vet vilket resultat man kan förvänta sig och då är det svårt att upptäcka fel i koden.
+    </p>
+    <h3>Hur gick det att hitta testbar kod bland dina klasser i Anax Lite?</h3>
+    <p>
+      Det var ganska svårt då många utav klasserna använder mycket sql i metoderna eller returnerar html kod.
+      Jag valde att testa min kalender klass och lyckades uppnå 100% kodtäckning.
+    </p>
     <h2>kmom07-10</h2>
   </article>
 </main>
